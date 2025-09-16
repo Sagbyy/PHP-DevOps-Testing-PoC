@@ -1,5 +1,7 @@
 {
     "name": "abdso/php-dev-ops-testing-po-c",
+    "description": "php-dev-ops-testing-po-c",
+    "license": "proprietary",
     "autoload": {
         "psr-4": {
             "App\\": "src/"
