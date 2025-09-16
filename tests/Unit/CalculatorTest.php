@@ -62,9 +62,5 @@ test('divides normally', function () {
 
 test('throws exception on division by zero', function () {
     $calculator = new Calculator();
-
-    $this->expectException(\InvalidArgumentException::class);
-    $this->expectExceptionMessage('Division by zero');
-
     $calculator->divide(10, 0);
-});
+})->throws(InvalidArgumentException::class, 'Division by zero');
