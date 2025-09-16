@@ -1,0 +1,26 @@
+{
+    "name": "abdso/php-dev-ops-testing-po-c",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.23",
+        "mockery/mockery": "^1.6"
+    },
+    "scripts": {
+        "test": "vendor/bin/pest"
+    },
+    "authors": [
+        {
+            "name": "Abd-Phenix",
+            "email": "abdelrahman.mohamed@phenixsp.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
