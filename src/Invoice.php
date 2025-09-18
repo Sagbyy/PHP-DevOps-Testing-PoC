@@ -17,6 +17,11 @@ class Invoice {
 
     public function add_invoice_line(InvoiceLine $invoice_lines) {
         $this->invoice_lines[] = $invoice_lines;
+        $this->updated_at = new DateTime();
+    }
+
+    public function get_invoice_lines() {
+        return $this->invoice_lines;
     }
 
     public function total_ht() {
@@ -47,5 +52,10 @@ class Invoice {
         }
 
         return bcdiv($total, '1', 2);
+    }
+
+    public function send_invoice(string $email_recipient) {
+        $message = "Please this amount of " . $this->total_ttc();
+        return PaypalService::send_payment($email_recipient, $this->total_ttc(), $message);
     }
 }
