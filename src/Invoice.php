@@ -8,11 +8,13 @@ class Invoice {
     private DateTime $created_at;
     private DateTime $updated_at;
     private array $invoice_lines;
+    private PaypalService $paypal_service;
 
-    public function __construct() {
+    public function __construct(PaypalService $paypal_service) {
         $this->created_at = new DateTime();
         $this->updated_at = new DateTime();
         $this->invoice_lines = [];
+        $this->paypal_service = $paypal_service;
     }
 
     public function add_invoice_line(InvoiceLine $invoice_lines) {
@@ -55,7 +57,8 @@ class Invoice {
     }
 
     public function send_invoice(string $email_recipient) {
-        $message = "Please this amount of " . $this->total_ttc();
-        return PaypalService::send_payment($email_recipient, $this->total_ttc(), $message);
+        $message = "Please pay this amount of " . $this->total_ttc() . "€";
+        print $message;
+        return $this->paypal_service->send_payment($email_recipient, $this->total_ttc(), $message);
     }
 }
