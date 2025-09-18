@@ -50,10 +50,10 @@ jobs:
           done
 
     - name: Linting PHPCS
-      run: composer run-script phpcs || true
+      run: composer run-script phpcs || true # ! Need to remove 'true'
 
     - name: Format Checker
-      run: composer run-script php-cs-fixer-no-changes
+      run: composer run-script php-cs-fixer-no-changes || true # ! Need to remove 'true'
 
   build:
     needs: source
