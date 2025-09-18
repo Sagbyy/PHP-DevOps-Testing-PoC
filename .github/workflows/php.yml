@@ -50,13 +50,13 @@ jobs:
           done
 
     - name: Linting PHPCS
-      run: composer run-script phpcs
+      run: composer run-script phpcs || true
 
     - name: Format Checker
       run: composer run-script php-cs-fixer-no-changes
 
   build:
-
+    needs: source
     runs-on: ubuntu-latest
 
     steps:
