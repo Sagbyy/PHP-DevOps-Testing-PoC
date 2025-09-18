@@ -2,8 +2,9 @@
 
 use App\Invoice;
 use App\InvoiceLine;
-use App\PaypalService;
+use App\Article;
 
+$article = new Article("Le Saint Coran", "Le Saint Coran description", 15.99);
 $invoice_line = new InvoiceLine($article, 5);
 
 it("add invoice line", function() use($invoice_line) {
