@@ -10,11 +10,15 @@
     "require-dev": {
         "pestphp/pest": "^1.23",
         "mockery/mockery": "^1.6",
-        "phpstan/phpstan": "^2.1"
+        "phpstan/phpstan": "^2.1",
+        "squizlabs/php_codesniffer": "^4.0",
+        "friendsofphp/php-cs-fixer": "^3.87"
     },
     "scripts": {
         "test": "vendor/bin/pest",
-        "analyse": "vendor/bin/phpstan analyse src tests"
+        "analyse": "vendor/bin/phpstan analyse src tests",
+        "phpcs": "vendor/bin/phpcs --standard=PSR12 src tests",
+        "php-cs-fixer-no-changes": "vendor/bin/php-cs-fixer fix --dry-run --diff ."
     },
     "authors": [
         {

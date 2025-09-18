@@ -10,6 +10,51 @@ permissions:
   contents: read
 
 jobs:
+  source:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Linting PHP Syntax
+      run: |
+          git fetch origin ${{ github.base_ref }} --depth=1
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...${{ github.sha }} | grep '\.php$' || true)
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "✅ Aucun fichier PHP modifié."
+            exit 0
+          fi
+
+          echo "Fichiers PHP modifiés :"
+          echo "$CHANGED_FILES"
+
+          for file in $CHANGED_FILES; do
+            echo "🔍 Lint $file"
+            php -l "$file" || exit 1
+          done
+
+    - name: Linting PHPCS
+      run: composer run-script phpcs
+
+    - name: Format Checker
+      run: composer run-script php-cs-fixer-no-changes
+
   build:
 
     runs-on: ubuntu-latest

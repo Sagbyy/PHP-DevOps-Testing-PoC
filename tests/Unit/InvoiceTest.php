@@ -3,7 +3,7 @@
 use App\Invoice;
 use App\InvoiceLine;
 use App\Article;
-use App\PaypalService;
+use App\Services\PaypalService;
 
 $article_one = new Article("Le Saint Coran", "Le Saint Coran description", 15.99);
 $article_two = new Article("Les 30 Hadith", "Les 30 hadith description", 9.99);

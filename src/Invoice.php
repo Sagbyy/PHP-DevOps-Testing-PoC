@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Services\PaypalService;
 use DateTime;
 
 class Invoice {
