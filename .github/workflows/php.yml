@@ -31,6 +31,9 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Generate autoload
+      run: composer dump-autoload -o
+
     - name: Linting PHP Syntax
       run: |
           git fetch origin ${{ github.base_ref }} --depth=1
