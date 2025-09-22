@@ -57,6 +57,9 @@ jobs:
 
     - name: Format Checker
       run: composer run-script php-cs-fixer-no-changes || true # ! Need to remove 'true'
+    
+    - name: Run PHPStan Scan
+      run: composer run-script analyse
 
   build:
     needs: source
@@ -99,7 +102,7 @@ jobs:
         - name: Run test suite
           run: composer run-script test
 
-  scan:
+  preview:
     runs-on: ubuntu-latest
     needs: test
     steps:
@@ -111,6 +114,4 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
-      - name: Run PHPStan
-        run: composer run-script analyse
 
