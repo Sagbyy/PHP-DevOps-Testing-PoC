@@ -88,6 +88,9 @@ jobs:
 
     - name: Unit testing
       run: composer run-script test
+
+    - name: Install XDebug
+      run: sudo apt-get install php-xdebug
     
     - name: Code coverage
       run: composer run-script code-coverage
