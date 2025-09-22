@@ -90,7 +90,7 @@ jobs:
       run: composer run-script test
     
     - name: Code coverage
-      run: composer run-script test
+      run: composer run-script code-coverage
 
   test:
       runs-on: ubuntu-latest
