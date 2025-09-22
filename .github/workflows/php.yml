@@ -99,6 +99,9 @@ jobs:
     - name: Code coverage
       run: composer run-script code-coverage
 
+    - name: Build Dockerfile
+      run: docker build -t php-devops-testing-poc . 
+
   test:
       runs-on: ubuntu-latest
       needs: build
