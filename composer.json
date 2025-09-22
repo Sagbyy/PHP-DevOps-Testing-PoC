@@ -19,7 +19,7 @@
         "analyse": "vendor/bin/phpstan analyse src tests",
         "phpcs": "vendor/bin/phpcs --standard=PSR12 src tests",
         "php-cs-fixer-no-changes": "vendor/bin/php-cs-fixer fix --dry-run --diff .",
-        "code-coverage": "vendor/bin/pest --coverage"
+        "code-coverage": "vendor/bin/pest --coverage --min=90"
     },
     "authors": [
         {
