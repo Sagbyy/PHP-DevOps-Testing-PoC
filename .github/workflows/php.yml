@@ -83,6 +83,15 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Generate autoload
+      run: composer dump-autoload -o
+
+    - name: Unit testing
+      run: composer run-script test
+    
+    - name: Code coverage
+      run: composer run-script test
+
   test:
       runs-on: ubuntu-latest
       needs: build
@@ -95,12 +104,6 @@ jobs:
             key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
             restore-keys: |
               ${{ runner.os }}-php-
-
-        - name: Generate autoload
-          run: composer dump-autoload -o
-
-        - name: Run test suite
-          run: composer run-script test
 
   preview:
     runs-on: ubuntu-latest
