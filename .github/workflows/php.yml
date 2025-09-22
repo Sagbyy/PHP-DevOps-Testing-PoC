@@ -79,6 +79,13 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
+    
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: xdebug
+        coverage: xdebug
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
@@ -89,9 +96,6 @@ jobs:
     - name: Unit testing
       run: composer run-script test
 
-    - name: Install XDebug
-      run: sudo apt-get install php-xdebug
-    
     - name: Code coverage
       run: composer run-script code-coverage
 
