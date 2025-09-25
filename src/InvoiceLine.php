@@ -25,4 +25,12 @@ class InvoiceLine {
     public function subtotal_ttc() {
         return $this->subtotal_ht() + $this->vat_amount();
     }
+
+    public function get_invoice_line() {
+        return [
+            'article' => $this->article,
+            'quantity' => $this->quantity,
+            'vat_rate' => $this->vat_rate,
+        ];
+    }
 }
